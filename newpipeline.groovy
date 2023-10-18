@@ -6,7 +6,7 @@ def archive(){
 
     echo "this is archive step "
 }
-def package(){
+def packaging(){
 
     echo "this is archive step "
 }
