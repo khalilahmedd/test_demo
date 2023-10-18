@@ -32,7 +32,7 @@ pipeline{
     stage ("package"){
      steps{
         script{
-            gv.package()
+            gv.packaging()
         }
      }
    }
