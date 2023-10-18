@@ -1,0 +1,49 @@
+def gv
+pipeline{
+  agent any
+  parameters{
+    choice (name: "Version", choices: ['101.0','102.0','103.0'])
+    booleanParam(name: 'executetest',defaultValue: true)
+
+  }
+  stages{
+
+    stage("init"){
+       steps{
+        script{
+           gv = load "newpipeline.groovy"
+        }
+       }
+        
+    }
+    stage ("test"){
+     when {
+        expression{
+            params.executetest
+        }
+     }   
+    steps{
+        script{
+        
+        gv.test()
+        }
+    }
+   } 
+    stage ("package"){
+     steps{
+        script{
+            gv.package()
+        }
+     }
+   }
+   
+    stage ("build"){
+    steps {
+        script{
+            gv.build()
+        }
+    }
+
+   }
+
+}
