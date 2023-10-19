@@ -46,7 +46,7 @@ pipeline{
         }
     }
     when{
-     experssion{
+     expression{
       params.envireoment == production
     }
      }
