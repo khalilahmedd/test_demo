@@ -38,13 +38,36 @@ pipeline{
    }
    
     stage ("build"){
+    input{
+     message "please select the ENViromet that you want to deploy "
+     ok "done"
+    parameters{
+        choice(name:"envireoment",choices:['test','staging','production'])
+        }
+    }
+    when{
+     experssion{
+      params.envireoment == production
+    }
+     }
     steps {
         script{
             gv.build()
+            echo "this is ${params.envireoment}"
         }
+    }
+    when{
+     expression{
+      params.envireoment == test
     }
 
    }
+steps {
+        script{
+            gv.archive()
+          echo "this is ${params.envireoment}"
+        }
+    }
 
 }
 }
