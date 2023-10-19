@@ -56,18 +56,7 @@ pipeline{
             echo "this is ${params.envireoment}"
         }
     }
-    when{
-     expression{
-      params.envireoment == test
-    }
-
-   }
-steps {
-        script{
-            gv.archive()
-          echo "this is ${params.envireoment}"
-        }
-    }
+    
 
 }
 }
