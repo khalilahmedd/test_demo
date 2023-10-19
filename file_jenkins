@@ -45,7 +45,11 @@ pipeline{
         choice(name:"envireoment",choices:['test','staging','production'])
         }
     }
-    
+    when{
+   expression{
+params.envireoment == 'production'
+}
+}
     steps {
         script{
             gv.build()
